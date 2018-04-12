@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}ChatHelper!{% endblock %}
+
+{% block body %}
+	<div class="jumbotron text-center" style="background-color: #404040 ">
+		<h1>Welcome To ChatHelper!</h1>
+		<p class="lead"> Basic Framework build working towards nav bar corrections </p>
+		{% if session.logged_in == NULL %}
+			<a href="/register" class="btn btn-primary btn-lg">Register</a>
+			<a href="/login" class="btn btn-success btn-lg">Login</a>
+		{% endif%}
+	</div>
+{% endblock %}
+
