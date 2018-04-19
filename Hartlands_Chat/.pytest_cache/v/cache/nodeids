@@ -2,5 +2,7 @@
   "tests/test_app.py::test_setUp", 
   "tests/test_app.py::test_tearDown", 
   "tests/test_app.py::test_empty_db", 
-  "tests/test_app.py::test_login"
+  "tests/test_app.py::test_login", 
+  "tests/test_app.py::test_user", 
+  "tests/test_app.py::test_orignate"
 ]
