@@ -1,0 +1,211 @@
+ .home{
+    padding:0; margin:0; height:100vh;
+  }
+  /*Nav Bar Design*/
+ @font-face { 
+  font-family: 'MontBlack'; 
+  src: url('Mont-Black.otf') format('truetype');
+  }
+  @font-face{
+    font-family:'MontLight';
+    src: url('Mont-Light.otf') format('truetype');
+  }
+.home ul {
+    list-style-type: none;
+    margin: 0;
+    top:0;
+    width: 100%;
+    height:70px;
+    padding:0;
+    overflow: hidden;
+    position: fixed;
+    background-color:#17252a;
+}
+
+.home li {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    text-decoration: none;
+    -webkit-transition: all ease; /* Safari */
+    transition: all 0.35s ease;
+    height:100%;
+    cursor:pointer;
+}
+
+.home li p {
+    display: inline-block;
+    color: white;
+    font-family: Arial Black, Helvetica, Verdana, sans-serif;
+    font-weight:900;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    margin-top:5px;
+}
+.home li:hover {
+    background-color:#858796;
+}
+#profile{
+    float:left;
+    width:20%;
+    height:100vh;
+    margin-top:70px;
+    position:fixed;
+    background-color:black;
+    overflow: auto;
+}
+#profileImage{
+  border-radius:90px;
+  margin-top:90px;
+  height:90px;
+  width:90px;
+  margin-left:5%;
+  margin-bottom:5px;
+  background-size: 91px;
+  background-image:url('profile_image.jpg');
+  text-decoration: none;
+    -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -o-transition: all 0.1s ease-in-out;
+        -ms-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+}
+#profileImage:hover{
+  filter:blur(2px);
+  cursor:pointer;
+  margin-left:8%;
+}
+#profileContent{
+  color:white;
+  font-family: MontLight;
+  font-size:20px;
+  padding:3px;
+  border-radius: 3px;
+    text-decoration: none;
+    -webkit-transition: all 0.15s ease-in-out;
+        -moz-transition: all 0.15s ease-in-out;
+        -o-transition: all 0.15s ease-in-out;
+        -ms-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out;
+}
+#profileContent p{
+  margin-left:10px;
+}
+#profileContent:hover{
+  background-color:#333333;
+  color:white;
+  cursor:pointer;
+}
+#mainContent{
+  float:right;
+  width:80%;
+  margin-top:70px;
+  height:100vh;
+  margin-bottom: 10px;
+}
+#contentPost{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+}
+#postHeader{
+  font-family:montBlack;
+  font-size:30px;
+}
+#postDetails{
+  font-size:23px;
+}
+#postContent{
+  font-family: montLight;
+  font-size:20px;
+}
+#postOptions{
+  font-family:montLight;
+  font-size:21px;
+  padding-bottom:7px;
+}
+#postOptions p{
+  padding:8px;
+  display:inline;
+  border-radius:3px;
+}
+#postOptions p:hover{
+  background-color:#333333;
+  color:white;
+  cursor:pointer;
+}
+#chatBar{
+  bottom:0;
+  width:80%;
+  height: 70px;
+  background-color:grey;
+  position:fixed;
+  margin-left:20%;
+}
+.button{
+    height:50px; width:90px; border: 2px solid white;
+    margin-top:10px;
+    margin-right:10px;
+    float:right;
+    font-size:14px;
+    font-family:montLight;
+    background-color:black;
+    color:white;
+    text-align:center;
+    text-decoration: none;
+    -webkit-transition: all 0.35s ease-in-out;
+        -moz-transition: all 0.35s ease-in-out;
+        -o-transition: all 0.35s ease-in-out;
+        -ms-transition: all 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+  }
+  .button:hover{
+    background-color:#666666;
+    cursor: pointer;
+  }
+  #message{
+    background-color:white;
+    width:82%;
+    float:left;
+    font-family:montLight;
+    margin-top:8px;
+    margin-left:1%;
+    border-radius:3px;
+    height:50px;
+    font-size:20px;
+    resize:none;
+  }
+#chatContent{
+  overflow: auto;
+  width:80%;
+  margin-left:20%;
+  margin-top:70px;
+  float:right;
+  vertical-align: bottom;
+  display:flex;
+  flex-direction: column-reverse;
+}
+#messageContent{
+  background-color:#313233;
+  color:white;
+  margin:5px;
+  border-radius:3px;
+}
+#messageDetails{
+  font-family:montBlack;
+  font-size:20px;
+  padding-left:2%;
+}
+#chat{
+  font-family:montLight;
+  font-size:13px;
+  padding-left:10%;
+  padding-right:3%;
+}
+@media screen and (max-width: 1100px){
+  #barContent{
+    width:100% !important;
+  }
+}
