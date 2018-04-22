@@ -1,21 +1,21 @@
 <html>
 <head>
-<title>LogIn Form Design</title>
-    <link rel="stylesheet" type="text/css" href="loginstyle.css">
+<title>Register Form Design</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='loginstyle.css') }}">
 <body>
     <div class="loginbox">
     <img src="theBest.png" class="avatar">
         <h1>Register</h1>
-	       <form action="" method="POST">
+	<form action="" method="POST">
             <p>Name</p>
-							<input type="text" name="name" placeholder="Enter Name" class="form-control">
-						<p>Email</p>
-							<input type="text" name="email" placeholder="Enter Email" class="form-control">
+	    	<input type="text" name="name" placeholder="Enter Name" class="form-control">
+	    <p>Email</p>
+		<input type="text" name="email" placeholder="Enter Email" class="form-control">
             <p>Username</p>
             	<input type="text" name="username" placeholder="Enter Username" class="form-control">
             <p>Password</p>
             	<input type="password" name="password" placeholder="Enter Password" class="form-control">
-						<p>Confirm Password</p>
+	    <p>Confirm Password</p>
             	<input type="password" name="confirm" placeholder="Re-enter Password" class="form-control">
             <input type="submit" name="" value="Login">
             <a href="#">Lost your password?</a><br>
