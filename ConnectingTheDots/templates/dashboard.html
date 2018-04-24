@@ -5,7 +5,7 @@
 		The Best Social Media
 		</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href= "{{url_for('static',filename='profileStyle.css') }}">
+	<link rel="stylesheet" href= "{{url_for('static',filename='css/profileStyle.css') }}">
 <script>
 		function loadScroll(){
 			window.scrollTo(0,document.body.scrollHeight);
@@ -16,17 +16,13 @@
 	<ul>
 			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
 						<li>
-				  			<p>User Name</p>
+				  			<p>{{ username }}</p>
 				  		</li>
-						<li style="float:right">
-				  			<p>Log out</p>
-				  		</li>
-				  		<li style="float:right">
-				  			<p>Find Users</p>
-				  		</li>
-				  		<li style="float:right">
-				  			<p>Chats</p>
-				  		</li>
+				  		<a href="/logout">
+							<li style="float:right">
+				  				<p>Log out</p>
+				  			</li>
+				  		</a>
 				  		<li style="float:right">
 				  			<p>Forums</p>
 				  		</li>
@@ -37,7 +33,7 @@
 		<div id="profileImage">
 		</div>
 		<div id="profileContent">
-			<p>User Name</p>
+			<p>{{ username }}</p>
 		</div>
 		<hr>
 		{% for usr in usernames %}

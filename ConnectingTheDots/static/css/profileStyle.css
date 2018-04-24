@@ -1,5 +1,12 @@
- .home{
-    padding:0; margin:0; height:100vh;
+html{
+    height:100%;
+    overflow:auto;
+  }
+  body{
+    height:100%;
+  }
+  .home{
+    padding:0; margin:0;
   }
   /*Nav Bar Design*/
  @font-face { 
@@ -50,7 +57,8 @@
 #profile{
     float:left;
     width:20%;
-    height:100vh;
+    height:calc(100vh - 140px);
+    padding-bottom:70px;
     margin-top:70px;
     position:fixed;
     background-color:black;
@@ -58,14 +66,14 @@
 }
 #profileImage{
   border-radius:90px;
-  margin-top:90px;
-  height:90px;
-  width:90px;
+  margin-top:5%;
+  height:100px;
+  width:100px;
   margin-left:5%;
   margin-bottom:5px;
   background-size: 91px;
-  background-image:url('https://image.freepik.com/free-photo/cute-cat-picture_1122-449.jpg');
-  text-decoration: none;
+  background-image:url('https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png');
+   text-decoration: none;
     -webkit-transition: all 0.1s ease-in-out;
         -moz-transition: all 0.1s ease-in-out;
         -o-transition: all 0.1s ease-in-out;
@@ -79,7 +87,7 @@
 }
 #profileContent{
   color:white;
-  font-family: MontLight, Arial;
+  font-family: MontLight;
   font-size:20px;
   padding:3px;
   border-radius: 3px;
@@ -111,18 +119,18 @@
   margin-right:auto;
 }
 #postHeader{
-  font-family:montBlack, Arial;
+  font-family:montBlack;
   font-size:30px;
 }
 #postDetails{
   font-size:23px;
 }
 #postContent{
-  font-family: montLight, Arial;
+  font-family: montLight;
   font-size:20px;
 }
 #postOptions{
-  font-family:montLight, Arial;
+  font-family:montLight;
   font-size:21px;
   padding-bottom:7px;
 }
@@ -150,7 +158,7 @@
     margin-right:10px;
     float:right;
     font-size:14px;
-    font-family:montLight, Arial;
+    font-family:montLight;
     background-color:black;
     color:white;
     text-align:center;
@@ -169,7 +177,7 @@
     background-color:white;
     width:82%;
     float:left;
-    font-family:montLight, Arial;
+    font-family:montLight;
     margin-top:8px;
     margin-left:1%;
     border-radius:3px;
@@ -185,22 +193,37 @@
   float:right;
   vertical-align: bottom;
   display:flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
-#messageContent{
-  background-color:#313233;
-  color:white;
+#messageContentReceived{
+  background-color:#e2e2e2;
+  color:#595a5b;
   margin:5px;
   border-radius:3px;
+  float:left;
+  width:60%;
+}
+#messageContentSent{
+  background-color:#c1c1c1;
+  color:#595a5b;
+  margin:5px;
+  border-radius:3px;
+  margin-left:39%;
+  width:60%;
 }
 #messageDetails{
-  font-family:montBlack, Arial;
-  font-size:20px;
+  font-family:montBlack;
+  font-size:22px;
   padding-left:2%;
+  padding-top:8px;
+}
+#messageDetails p{
+  padding:0;
+  margin:0;
 }
 #chat{
-  font-family:montLight, Arial;
-  font-size:13px;
+  font-family:montLight;
+  font-size:18px;
   padding-left:10%;
   padding-right:3%;
 }
@@ -209,3 +232,4 @@
     width:100% !important;
   }
 }
+ 

@@ -54,18 +54,23 @@ h1{
     color: #fff;
 }
 
-.loginbox input[type="submit"]
+.loginbox button
 {
     border: none;
     outline: none;
     height: 40px;
-    background : #fb2525;
-    font-size: : 18px;
-    color: #fff;
-    border-radius: 20px;
+    background-color: #fb2525;
+    padding: 15px 32px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    width:100%;
+    border-radius: 25px;
+    color:white;
 }
 
-.loginbox input[type="submit"]:hover
+.loginbox button:hover
 {
     cursor: pointer;
     background: #ffc107;

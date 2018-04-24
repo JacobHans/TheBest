@@ -122,7 +122,6 @@ def register():
 		name = request.form['name']
 		email = request.form['email']
 		username = request.form['username']
-		password = request.form['password']
 		confirm = sha256_crypt.encrypt(str(request.form['confirm']))
 		
 		#Create Cursor
@@ -214,7 +213,7 @@ def dashboard():
 		if names['username'] != session['username']:
 			usernames.append(names['username'])
 	#print(data['name'])
-	return render_template('dashboard.html', usernames=usernames)
+	return render_template('dashboard.html', usernames=usernames, username=username)
 
 # Article Form Class
 class ArticleForm(Form):
@@ -318,8 +317,6 @@ def user(name):
 def receive_username(username):
     users[username] = request.sid
     #users.append({username : request.sid})
-    print(users)
-    print('Username added!')
 
 @socketio.on('private_message', namespace='/private')
 def private_message(payload):
