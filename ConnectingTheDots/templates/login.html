@@ -4,18 +4,24 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='loginstyle.css') }}">
 <body>
     <div class="loginbox">
-    <img src="theBest.png" class="avatar">
+    <img src="https://lh3.googleusercontent.com/tAZARVEEd-hw_8u0it_MjANWu4D-Vno-LZqmsrC8Lvq3CKGSy_UAqLpto2G0Gmqp0-iGMTWIURuWBBQK" class="avatar">
         <h1>Login Here</h1>
 	       <form action="" method="POST">
             <p>Username</p>
-            <input type="text" name="username" placeholder="Enter Username" class="form-control">
+            <input type="text" id="username" name="username" placeholder="Enter Username" class="form-control" required>
             <p>Password</p>
-            <input type="password" name="password" placeholder="Enter Password" class="form-control">
-            <input type="submit" name="" value="Login">
+            <input type="password" name="password" placeholder="Enter Password" class="form-control" required>
+            <button type="submit" id="send_username">Login</button>
             <a href="#">Lost your password?</a><br>
             <a href=register>Don't have an account</a>
         </form>
     </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script
+              src="http://code.jquery.com/jquery-3.2.1.min.js"
+              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+              crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
     </head>

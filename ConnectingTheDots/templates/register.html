@@ -1,23 +1,23 @@
 <html>
 <head>
 <title>Register Form Design</title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='loginstyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='registerstyle.css') }}">
 <body>
     <div class="loginbox">
-    <img src="theBest.png" class="avatar">
+    <img src="https://lh3.googleusercontent.com/tAZARVEEd-hw_8u0it_MjANWu4D-Vno-LZqmsrC8Lvq3CKGSy_UAqLpto2G0Gmqp0-iGMTWIURuWBBQK" class="avatar">
         <h1>Register</h1>
 	<form action="" method="POST">
             <p>Name</p>
-	    	<input type="text" name="name" placeholder="Enter Name" class="form-control">
+	    	<input type="text" name="name" placeholder="Enter Name" class="form-control" required>
 	    <p>Email</p>
-		<input type="text" name="email" placeholder="Enter Email" class="form-control">
+		<input type="text" name="email" placeholder="Enter Email" class="form-control" required>
             <p>Username</p>
-            	<input type="text" name="username" placeholder="Enter Username" class="form-control">
+            	<input type="text" name="username" placeholder="Enter Username" class="form-control" required>
             <p>Password</p>
-            	<input type="password" name="password" placeholder="Enter Password" class="form-control">
+            	<input type="password" name="password" placeholder="Enter Password" class="form-control" required>
 	    <p>Confirm Password</p>
-            	<input type="password" name="confirm" placeholder="Re-enter Password" class="form-control">
-            <input type="submit" name="" value="Login">
+            	<input type="password" name="confirm" placeholder="Re-enter Password" class="form-control" required>
+            <input type="submit" name="" value="Register">
             <a href="#">Lost your password?</a><br>
 
         </form>

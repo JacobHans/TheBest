@@ -8,13 +8,16 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 import os
+from flask_socketio import SocketIO, send, emit
 
 #Make directory
 #basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
+app.secret_key = "TheBestCSCI3308"
 manager = Manager(app)
-
+users = {}
+socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
 
 #Config SQL ALCHEMY
@@ -53,8 +56,8 @@ db.create_all()
 #Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'guest'
-app.config['MYSQL_DB'] = 'ChatHelper'
+app.config['MYSQL_PASSWORD'] = 'toor'
+app.config['MYSQL_DB'] = 'TheBest'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # init MySQL
@@ -113,48 +116,9 @@ def page_not_found(e):
 def internal_server_error(e):
 	return render_template('500.html'), 500
 
-# Register Form Class
-#class RegisterForm(Form):
-#	name = StringField('Name', [validators.Length(min = 1, max = 50)])
-#	username = StringField('Username', [validators.Length(min = 4, max = 25)])
-#	email = StringField('Email', [validators.Length(min = 6, max = 50)])
-#	password = PasswordField('Password', [
-#		validators.DataRequired(),
-#		validators.EqualTo('confirm', message='Passwords do not match.')
-#		])
-#	confirm = PasswordField('Confirm Passord')
-
-# User Register
-#@app.route('/register', methods=['GET', 'POST'])
-#def register():
-#	form = RegisterForm(request.form)
-#	if request.method == 'POST' and form.validate():
-#		name = form.name.data
-#		email = form.email.data
-#		username = form.username.data
-#		#password = form.password.data
-#		password = sha256_crypt.encrypt(str(form.password.data))
-#
-#		#Create Cursor
-#		cur = mysql.connection.cursor()
-#
-#		#Excute query
-#		cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)",(name, email, username, password))
-#
-		#Commit to DB
-#		mysql.connection.commit()
-#
-#		#Close connection
-#		cur.close()
-#
-#		flash('You are now registered and can log in', 'success')
-#
-#		return redirect(url_for('login'))
-#	return render_template('register.html', form = form)
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	if request.method == 'POST' and form.validate():
+	if request.method == 'POST':
 		name = request.form['name']
 		email = request.form['email']
 		username = request.form['username']
@@ -165,7 +129,7 @@ def register():
 		cur = mysql.connection.cursor()
 
 		#Excute query
-		cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)",(name, email, username, password))
+		cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)",(name, email, username, confirm))
 
 		#Commit to DB
 		mysql.connection.commit()
@@ -204,7 +168,6 @@ def login():
 				#Password accepted
 				session['logged_in'] = True
 				session['username'] = username
-
 				flash('You are now logged in', 'success')
 				return redirect(url_for('dashboard'))
 			else:
@@ -243,20 +206,15 @@ def logout():
 def dashboard():
 	# Create Cursor
 	cur = mysql.connection.cursor()
-
-	#Get Articles
-	result = cur.execute("SELECT * FROM articles")
-
-	articles = cur.fetchall()
-
-	if result > 0:
-		return render_template('dashboard.html', articles=articles)
-	else:
-		msg = 'No Articles Found'
-		return render_template('dashboard.html', msg=msg)
-
-	#Close Connection
-	cur.close()
+	username = session['username']
+	result = cur.execute("SELECT username from users where name != %s", [username])
+	data = cur.fetchall()
+	usernames = []
+	for names in data:
+		if names['username'] != session['username']:
+			usernames.append(names['username'])
+	#print(data['name'])
+	return render_template('dashboard.html', usernames=usernames)
 
 # Article Form Class
 class ArticleForm(Form):
@@ -356,8 +314,22 @@ def delete_article(id):
 def user(name):
 	return'<h1>Hello, %s!</h1>' % name
 
+@socketio.on('username', namespace='/private')
+def receive_username(username):
+    users[username] = request.sid
+    #users.append({username : request.sid})
+    print(users)
+    print('Username added!')
+
+@socketio.on('private_message', namespace='/private')
+def private_message(payload):
+    recipient_session_id = users[payload['username']]
+    message = payload['message']
+
+    #emit('new_private_message', message, room=recipient_session_id)
 
 if __name__ == '__main__':
 	#app.secret_key = os.environ.get('SECRET_KEY')
 	app.secret_key='secret123'
 	manager.run()
+	socketio.run(app)

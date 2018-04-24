@@ -6,14 +6,21 @@
 		</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href= "{{url_for('static',filename='profileStyle.css') }}">
+<script>
+		function loadScroll(){
+			window.scrollTo(0,document.body.scrollHeight);
+		}
+	</script>
 </head>
-<body class="home">
+<body class="home" onload="loadScroll()">
 	<ul>
 			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
 						<li>
 				  			<p>User Name</p>
 				  		</li>
-
+						<li style="float:right">
+				  			<p>Log out</p>
+				  		</li>
 				  		<li style="float:right">
 				  			<p>Find Users</p>
 				  		</li>
@@ -33,71 +40,78 @@
 			<p>User Name</p>
 		</div>
 		<hr>
+		{% for usr in usernames %}
+		
 		<div id="profileContent">
-			<p>Friend 1</p>
+			<p>{{ usr }}</p>
 		</div>
-		<div id="profileContent">
-			<p>Friend 2</p>
-		</div>
-		<div id="profileContent">
-			<p>Friend 3</p>
-		</div>
-		<div id="profileContent">
-			<p>Friend 4</p>
-		</div>
-		<div id="profileContent">
-			<p>Friend 5</p>
-		</div>
-		<div id="profileContent">
-			<p>Friend 6</p>
-		</div>
-		<div id="profileContent">
-			<p>Friend 7</p>
-		</div>
+			{% endfor %}
 	</div>
 	<div id="chatContent">
-		<div style="height:70px"></div>
-			<div id="messageContent">
+		<div id="messageContentSent">
 				<div id="messageDetails">
-					<p>message content 1</p>
+					<p>username 1</p>
+					<p>date</p>
+				</div>
+				<div id="chat">
+					<p>hey there this is a test</p>
+				</div>
+			</div>
+			<div id="messageContentReceived">
+				<div id="messageDetails">
+					<p>username 2</p>
+					<p>date</p>
 				</div>
 				<div id="chat">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 				</div>
 			</div>
-			<div id="messageContent">
+			<div id="messageContentReceived">
 				<div id="messageDetails">
-					<p>message content 2</p>
+					<p>username 3</p>
+					<p>date</p>
 				</div>
 				<div id="chat">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 				</div>
 			</div>
-			<div id="messageContent">
+			<div id="messageContentSent">
 				<div id="messageDetails">
-					<p>message content 3</p>
+					<p>username 4</p>
+					<p>date</p>
 				</div>
 				<div id="chat">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 				</div>
 			</div>
-			<div id="messageContent">
+			<div id="messageContentReceived">
 				<div id="messageDetails">
-					<p>message content 4</p>
+					<p>username 5</p>
+					<p>date</p>
 				</div>
 				<div id="chat">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 				</div>
 			</div>
-			<div id="messageContent">
+			<div id="messageContentReceived">
 				<div id="messageDetails">
-					<p>message content 5</p>
+					<p>username 6</p>
+					<p>date</p>
 				</div>
 				<div id="chat">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 				</div>
 			</div>
-
+			<div id="messageContentSent">
+				<div id="messageDetails">
+					<p>username 6</p>
+					<p>date</p>
+				</div>
+				<div id="chat">
+					<p>Sounds good my dude</p>
+				</div>
+			</div>
+	<div style="height:70px" id="buffer"></div>
 
 
 	</div>
@@ -109,23 +123,5 @@
 			</button>
 		</form>
 	</div>
-	<!-- 
-	<div id="mainContent">
-		<div id="contentPost">
-			<div id="postHeader">
-				<p>Header for post</p>
-				<p id="postDetails">username | date</p>
-				<hr>
-			</div>
-			<div id="postContent">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-			<div id="postOptions">
-				<p>reply</p>
-				<p>comments ></p>
-			</div>
-		</div>
-		</div>
-	-->
 	</div>
 </body>

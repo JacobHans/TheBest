@@ -64,7 +64,7 @@
   margin-left:5%;
   margin-bottom:5px;
   background-size: 91px;
-  background-image:url('profile_image.jpg');
+  background-image:url('https://image.freepik.com/free-photo/cute-cat-picture_1122-449.jpg');
   text-decoration: none;
     -webkit-transition: all 0.1s ease-in-out;
         -moz-transition: all 0.1s ease-in-out;
@@ -79,7 +79,7 @@
 }
 #profileContent{
   color:white;
-  font-family: MontLight;
+  font-family: MontLight, Arial;
   font-size:20px;
   padding:3px;
   border-radius: 3px;
@@ -111,18 +111,18 @@
   margin-right:auto;
 }
 #postHeader{
-  font-family:montBlack;
+  font-family:montBlack, Arial;
   font-size:30px;
 }
 #postDetails{
   font-size:23px;
 }
 #postContent{
-  font-family: montLight;
+  font-family: montLight, Arial;
   font-size:20px;
 }
 #postOptions{
-  font-family:montLight;
+  font-family:montLight, Arial;
   font-size:21px;
   padding-bottom:7px;
 }
@@ -150,7 +150,7 @@
     margin-right:10px;
     float:right;
     font-size:14px;
-    font-family:montLight;
+    font-family:montLight, Arial;
     background-color:black;
     color:white;
     text-align:center;
@@ -169,7 +169,7 @@
     background-color:white;
     width:82%;
     float:left;
-    font-family:montLight;
+    font-family:montLight, Arial;
     margin-top:8px;
     margin-left:1%;
     border-radius:3px;
@@ -194,12 +194,12 @@
   border-radius:3px;
 }
 #messageDetails{
-  font-family:montBlack;
+  font-family:montBlack, Arial;
   font-size:20px;
   padding-left:2%;
 }
 #chat{
-  font-family:montLight;
+  font-family:montLight, Arial;
   font-size:13px;
   padding-left:10%;
   padding-right:3%;
