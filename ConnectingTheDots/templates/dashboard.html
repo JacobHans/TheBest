@@ -6,21 +6,22 @@
 		</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href= "{{url_for('static',filename='css/profileStyle.css') }}">
-<script>
-		function loadScroll(){
-			window.scrollTo(0,document.body.scrollHeight);
-		}
-	</script>
 </head>
 <body class="home" onload="loadScroll()">
 	<ul>
 			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
 						<li>
 				  			<p>{{ username }}</p>
+				  			<span class="dot"></span>
 				  		</li>
 				  		<a href="/logout">
 							<li style="float:right">
 				  				<p>Log out</p>
+				  			</li>
+				  		</a>
+				  		<a href="/dashboard">
+							<li style="float:right">
+				  				<p>Chats</p>
 				  			</li>
 				  		</a>
 				  		<li style="float:right">
@@ -32,81 +33,41 @@
 	<div id="profile">
 		<div id="profileImage">
 		</div>
-		<div id="profileContent">
-			<p>{{ username }}</p>
+		<div id="chatConvo">
+			<p>Chatting with:</p>
+			<p id="curChat">{{ convo }}</p>
 		</div>
 		<hr>
 		{% for usr in usernames %}
-		
-		<div id="profileContent">
+		<div id="profileContent" onclick="changeChat(this)">
 			<p>{{ usr }}</p>
 		</div>
-			{% endfor %}
+		{% endfor %}
 	</div>
 	<div id="chatContent">
-		<div id="messageContentSent">
-				<div id="messageDetails">
-					<p>username 1</p>
-					<p>date</p>
-				</div>
-				<div id="chat">
-					<p>hey there this is a test</p>
-				</div>
-			</div>
-			<div id="messageContentReceived">
-				<div id="messageDetails">
-					<p>username 2</p>
-					<p>date</p>
-				</div>
-				<div id="chat">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-				</div>
-			</div>
-			<div id="messageContentReceived">
-				<div id="messageDetails">
-					<p>username 3</p>
-					<p>date</p>
-				</div>
-				<div id="chat">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-				</div>
-			</div>
+			{% for msg in messages %}
+			{% if msg.username1 == username %}
 			<div id="messageContentSent">
 				<div id="messageDetails">
-					<p>username 4</p>
-					<p>date</p>
+					<p>{{ username }}</p>
+					<p>{{ msg.message_timestamp }}</p>
 				</div>
 				<div id="chat">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+					<p>{{ msg.message }}</p>
 				</div>
 			</div>
+			{% else %}
 			<div id="messageContentReceived">
 				<div id="messageDetails">
-					<p>username 5</p>
-					<p>date</p>
+					<p>{{ msg.username1 }}</p>
+					<p>{{ msg.message_timestamp }}</p>
 				</div>
 				<div id="chat">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+					<p>{{ msg.message }}</p>
 				</div>
 			</div>
-			<div id="messageContentReceived">
-				<div id="messageDetails">
-					<p>username 6</p>
-					<p>date</p>
-				</div>
-				<div id="chat">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-				</div>
-			</div>
-			<div id="messageContentSent">
-				<div id="messageDetails">
-					<p>username 6</p>
-					<p>date</p>
-				</div>
-				<div id="chat">
-					<p>Sounds good my dude</p>
-				</div>
-			</div>
+			{% endif %}
+			{% endfor %}
 	<div style="height:70px" id="buffer"></div>
 
 
@@ -120,4 +81,15 @@
 		</form>
 	</div>
 	</div>
+	<script>
+		function loadScroll(){
+			window.scrollTo(0,document.body.scrollHeight);
+		}
+
+		function changeChat(value){
+			var text = value.getElementsByTagName('p')[0].innerHTML;
+			document.getElementById('curChat').innerHTML = text;
+		}
+	</script>
 </body>
+</html>

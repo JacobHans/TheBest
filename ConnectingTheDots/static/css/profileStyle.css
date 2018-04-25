@@ -61,7 +61,7 @@ html{
     padding-bottom:70px;
     margin-top:70px;
     position:fixed;
-    background-color:black;
+    background-color:#1c1c1c;
     overflow: auto;
 }
 #profileImage{
@@ -84,6 +84,16 @@ html{
   filter:blur(2px);
   cursor:pointer;
   margin-left:8%;
+}
+#chatConvo{
+  color:white;
+  font-family: MontLight;
+  font-size:20px;
+  padding:5px;
+}
+#chatConvo p{
+  margin:3px;
+  margin-left:14px;
 }
 #profileContent{
   color:white;
@@ -226,6 +236,13 @@ html{
   font-size:18px;
   padding-left:10%;
   padding-right:3%;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #50e539;
+  border-radius: 50%;
+  display: inline-block;
 }
 @media screen and (max-width: 1100px){
   #barContent{

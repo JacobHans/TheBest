@@ -212,8 +212,14 @@ def dashboard():
 	for names in data:
 		if names['username'] != session['username']:
 			usernames.append(names['username'])
-	#print(data['name'])
-	return render_template('dashboard.html', usernames=usernames, username=username)
+	#get messages and sort them by order they were sent
+	cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (username, usernames[0]))
+	messages = cur.fetchall()
+	cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (usernames[0], username))
+	messages += cur.fetchall()
+	messages = sorted(messages, key=lambda i:i['id'])
+	convo = usernames[0]
+	return render_template('dashboard.html', usernames=usernames, username=username, convo=convo, messages=messages)
 
 # Article Form Class
 class ArticleForm(Form):
