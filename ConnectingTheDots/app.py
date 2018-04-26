@@ -200,10 +200,26 @@ def logout():
 	return redirect(url_for('login'))
 
 # Dashboard
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET','POST'])
+@app.route('/dashboard/<string:username1>', methods=['GET', 'POST'])
 @is_logged_in
-def dashboard():
+def dashboard(username1=None):
+
 	# Create Cursor
+	#############################################################3
+	#basic stuff that we can use if things dont work
+	if request.method == 'POST':
+		username = request.form['username1']
+		message = request.form['message']
+		cur = mysql.connection.cursor()
+		cur.execute("INSERT INTO messages(username1, username2, message) VALUES(%s, %s, %s)", (session['username'], username, message))
+
+		mysql.connection.commit()
+
+		#Close connection
+		cur.close()
+	#############################################################
+
 	cur = mysql.connection.cursor()
 	username = session['username']
 	result = cur.execute("SELECT username from users where name != %s", [username])
@@ -213,14 +229,22 @@ def dashboard():
 		if names['username'] != session['username']:
 			usernames.append(names['username'])
 	#get messages and sort them by order they were sent
-	cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (username, usernames[0]))
-	messages = cur.fetchall()
-	cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (usernames[0], username))
-	messages += cur.fetchall()
-	messages = sorted(messages, key=lambda i:i['id'])
-	convo = usernames[0]
+	if(username1 == None):
+		cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (username, usernames[0]))
+		messages = cur.fetchall()
+		cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (usernames[0], username))
+		messages += cur.fetchall()
+		messages = sorted(messages, key=lambda i:i['id'])
+		convo = usernames[0]
+	else :
+		cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (username, username1))
+		messages = cur.fetchall()
+		cur.execute("SELECT * from messages where username1 = %s and username2 = %s", (username1, username))
+		messages += cur.fetchall()
+		messages = sorted(messages, key=lambda i:i['id'])
+		convo = username1
 	return render_template('dashboard.html', usernames=usernames, username=username, convo=convo, messages=messages)
-
+	
 # Article Form Class
 class ArticleForm(Form):
 	title = StringField('Title', [validators.Length(min = 1, max = 200)])
@@ -326,10 +350,10 @@ def receive_username(username):
 
 @socketio.on('private_message', namespace='/private')
 def private_message(payload):
-    recipient_session_id = users[payload['username']]
-    message = payload['message']
+	recipient_session_id = users[payload['username']]
+	message = payload['message']
 
-    #emit('new_private_message', message, room=recipient_session_id)
+	emit('new_private_message', message, room=recipient_session_id)
 
 if __name__ == '__main__':
 	#app.secret_key = os.environ.get('SECRET_KEY')

@@ -98,7 +98,7 @@ html{
 #profileContent{
   color:white;
   font-family: MontLight;
-  font-size:20px;
+  font-size:17px;
   padding:3px;
   border-radius: 3px;
     text-decoration: none;
@@ -183,7 +183,7 @@ html{
     background-color:#666666;
     cursor: pointer;
   }
-  #message{
+  #private_message{
     background-color:white;
     width:82%;
     float:left;

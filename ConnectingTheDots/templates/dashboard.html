@@ -39,9 +39,9 @@
 		</div>
 		<hr>
 		{% for usr in usernames %}
-		<div id="profileContent" onclick="changeChat(this)">
-			<p>{{ usr }}</p>
-		</div>
+			<div id="profileContent" onclick="changeChat(this)">
+				<p>{{ usr }}</p>
+			</div>
 		{% endfor %}
 	</div>
 	<div id="chatContent">
@@ -73,22 +73,35 @@
 
 	</div>
 	<div id="chatBar">
-		<form>
-			<textarea type="textarea" id="message" placeholder="type message" required></textarea>
-			<button class="button">
+		<!--changed some things here that will load -->
+		<form action="" method="POST">
+			<textarea type="textarea" id="private_message" name="message" placeholder="type message" required></textarea>
+			<button class="button" id="send_private_message" type="submit">
 				<p>send</p>
 			</button>
+			<input type="text" id="send_to_username" name="username1" style="visibility: hidden">
 		</form>
 	</div>
 	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script
+              src="http://code.jquery.com/jquery-3.2.1.min.js"
+              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+              crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 	<script>
 		function loadScroll(){
 			window.scrollTo(0,document.body.scrollHeight);
+			document.getElementById('send_to_username').value = document.getElementById('curChat').innerHTML;
+			console.log(document.getElementById('curChat').innerHTML);
 		}
 
 		function changeChat(value){
 			var text = value.getElementsByTagName('p')[0].innerHTML;
 			document.getElementById('curChat').innerHTML = text;
+			document.getElementById('send_to_username').value = text;
+			window.open('/dashboard/'+document.getElementById('curChat').innerHTML, "_self");
 		}
 	</script>
 </body>

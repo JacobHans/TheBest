@@ -13,6 +13,7 @@ import os
 #basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
+app.secret_key = "TheBestCSCI3308"
 manager = Manager(app)
 
 bootstrap = Bootstrap(app)
@@ -53,8 +54,8 @@ db.create_all()
 #Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'guest'
-app.config['MYSQL_DB'] = 'ChatHelper'
+app.config['MYSQL_PASSWORD'] = 'toor'
+app.config['MYSQL_DB'] = 'TheBest'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # init MySQL
