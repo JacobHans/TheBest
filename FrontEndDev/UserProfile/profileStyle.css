@@ -1,88 +1,96 @@
- .button{
-    height:60px; width:300px; border: 2px solid white; margin-left:auto; margin-right:auto; margin-top:60px;
-    text-decoration: none;
-    -webkit-transition: all 0.35s ease-in-out;
-        -moz-transition: all 0.35s ease-in-out;
-        -o-transition: all 0.35s ease-in-out;
-        -ms-transition: all 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-  }
-  .button:hover{
-    background-color:#666666;
-    cursor: pointer;
-  }
-  .home{
-    padding:0; margin:0; height:100vh
-  }
-  /*Nav Bar Design*/
- @font-face { 
-  font-family: 'MontBlack'; 
-  src: url('Mont-Black.otf') format('truetype');
-  }
-  @font-face{
-    font-family:'MontLight';
-    src: url('Mont-Light.otf') format('truetype');
-  }
-.home ul {
-    list-style-type: none;
+body{
     margin: 0;
-    top:0;
-    width: 100%;
-    height:70px;
-    padding:0;
-    overflow: hidden;
-    position: fixed;
-    background: rgba(23, 37, 42, .5);
+    padding: 0;
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    font-family: sans-serif;
 }
 
-.home li {
-    float: left;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 20px;
-    text-decoration: none;
-    -webkit-transition: all ease; /* Safari */
-    transition: all 0.35s ease;
-    height:100%;
-    cursor:pointer;
+.profilebox{
+    width: 320px;
+    height: 420px;
+    background: #373a3f;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position:absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box; 
+    padding: 70px 30px;
 }
 
-.home li p {
-    display: inline-block;
-    color: white;
-    font-family: Arial Black, Helvetica, Verdana, sans-serif;
-    font-weight:900;
-    font-size: 14px;
+.avatar{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -24%;
+    left: calc(50% - 50px);
+}
+
+h1{
+    margin-bottom: 0;
+    padding: 0 0 0px;
     text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #919cad;
+}
+h2{
+    margin-top: 0;
+    padding: 0 0 0px;
+    text-align: center;
+    font-size: 22px;
+
+}
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 400px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #373a3f; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+/* The navigation menu links */
+.btn{
+    padding: 6px 8px 6px 16px;
     text-decoration: none;
-    margin-top:5px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #9da5b2;
+    font-family: sans-serif;
+    display: block;
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: transparent;
+    cursor: pointer;
 }
-.home li:hover {
-    background-color:#848484;
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
 }
-#firstBlock{
-  height:100vh;
-  width:100%; 
-  padding-top:1px;
-  background-image:url('background_computer.jpg');
-  background-repeat: no-repeat; 
-  text-align:center;
-  background-size:2000px 1333px;
+
+/* Style the active class (and buttons on mouse-over) */
+.active, .btn:hover {
+  background-color: #719fe8;
+  color: white;
 }
-#signupBlock{
-  height:100vh;
-  width:100%; 
-  padding-top:1px;
-  background-color:#aaa0a0;
-  text-align:center;
-  scroll-behavior: smooth;
+
+/* Style page content */
+.main {
+    background-color: #4f545c;
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
 }
-@media screen and (max-width: 1100px){
-  #barContent{
-    width:100% !important;
-  }
-@media screen and (max-width: 600px){
-    #firstBlockContent p{
-    font-size:30px !important;
-  }
-}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
