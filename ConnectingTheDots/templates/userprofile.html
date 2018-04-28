@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<title>User Profile</title>
+<link rel="stylesheet" href= "{{url_for('static',filename='css/profileStyle.css') }}">
+</head>
+<body bgcolor=#4f545c class="home">
+        <ul id="test">
+            <div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
+                        <li>
+                            <p id="sentUsername">{{ username }}</p>
+                            <span class="dot"></span>
+                        </li>
+                        <a href="/logout">
+                            <li style="float:right">
+                                <p>Log out</p>
+                            </li>
+                        </a>
+                        <a href="/dashboard">
+                            <li style="float:right">
+                                <p>Chats</p>
+                            </li>
+                        </a>
+                        <a href="/profile">
+                        <li style="float:right">
+                            <p>Profile</p>
+                        </li>
+                    </a>
+            </div>
+    </div>
+    </ul>
+    <div class="profilebox">
+        <img src="https://lh3.googleusercontent.com/tAZARVEEd-hw_8u0it_MjANWu4D-Vno-LZqmsrC8Lvq3CKGSy_UAqLpto2G0Gmqp0-iGMTWIURuWBBQK" class="avatar">
+        {% for info in content %}
+        <h1>USERNAME</h1>
+        <h2>{{ username }}</h2>
+        <h1>EMAIL</h1>
+        <h2>{{ info.email }}</h2>
+        <h1>REGISTERED DATE</h1>
+        <h2>{{ info.register_date }}</h2>
+        {% endfor %}
+    </div>        
+</body>
+
+<!-- Page content -->
+<div id="main">
+  <script src="userprofile.js"></script>
+</div>
+</html>

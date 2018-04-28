@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var socket = io.connect('http://127.0.0.1:5000');
 
-    var socket_messages = io('http://127.0.0.1:5000/messages')
+    var socket_messages = io('http://127.0.0.1:5000/messages');
 
     $('#send').on('click', function() {
         var message = $('#message').val();
@@ -18,7 +18,7 @@ $(document).ready(function() {
         alert(msg);
     });
 
-    var private_socket = io('http://127.0.0.1:5000/private')
+    var private_socket = io('http://127.0.0.1:5000/private');
 
     $('#send_username').on('click', function() {
         private_socket.emit('username', $('#username').val());
@@ -27,31 +27,14 @@ $(document).ready(function() {
     $('#send_private_message').on('click', function() {
         var recipient = $('#send_to_username').val();
         var message_to_send = $('#private_message').val();
-        private_socket.emit('private_message', {'username' : recipient, 'message' : message_to_send});
+        var sentUser = document.getElementById("sentUsername").innerHTML;
+        document.getElementById("chatConvo").innerHTML = message_to_send;
+        private_socket.emit('private_message', {'username' : recipient, 'message' : message_to_send, 'sentname' : sentUser});
     });
 
     private_socket.on('new_private_message', function(msg) {
-        window.open('/dashboard/'+ $('#send_to_username').val(), "_self");
+       document.getElementById("chatConvo").innerHTML = "it worked";
+       alert(msg);
     });
-
-    /*
-
-    socket.on('connect', function() {
-    
-        socket.send('I am now connected!');
-
-        socket.emit('custom event', {'name' : 'Anthony'});
-
-        socket.on('from flask', function(msg) {
-            alert(msg['extension']);
-        });
-
-        socket.on('message', function(msg) {
-            alert(msg);
-        });
-        
-    });
-
-    */
 
 });

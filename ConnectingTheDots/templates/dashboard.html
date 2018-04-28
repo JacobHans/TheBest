@@ -5,13 +5,13 @@
 		The Best Social Media
 		</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href= "{{url_for('static',filename='css/profileStyle.css') }}">
+	<link rel="stylesheet" href= "{{url_for('static',filename='css/dashboardStyle.css') }}">
 </head>
 <body class="home" onload="loadScroll()">
-	<ul>
+	<ul id="test">
 			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
 						<li>
-				  			<p>{{ username }}</p>
+				  			<p id="sentUsername">{{ username }}</p>
 				  			<span class="dot"></span>
 				  		</li>
 				  		<a href="/logout">
@@ -24,9 +24,11 @@
 				  				<p>Chats</p>
 				  			</li>
 				  		</a>
+				  		<a href="/profile">
 				  		<li style="float:right">
-				  			<p>Forums</p>
+				  			<p>Profile</p>
 				  		</li>
+				  	</a>
 			</div>
 	</div>
 	</ul>
@@ -75,7 +77,12 @@
 	<div id="chatBar">
 		<!--changed some things here that will load -->
 		<form action="" method="POST">
-			<textarea type="textarea" id="private_message" name="message" placeholder="type message" required></textarea>
+			<textarea type="textarea" id="private_message" style=" background-color:white;
+    width:82%;
+    float:left;
+    font-family:montLight;
+    margin-top:8px;
+    margin-left:1%;border-radius:3px;height:50px;font-size:20px; resize:none;" name="message" placeholder="type message" required></textarea>
 			<button class="button" id="send_private_message" type="submit">
 				<p>send</p>
 			</button>
@@ -83,13 +90,13 @@
 		</form>
 	</div>
 	</div>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-    <script
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script type="text/javascript"
               src="http://code.jquery.com/jquery-3.2.1.min.js"
               integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
               crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 	<script>
 		function loadScroll(){
 			window.scrollTo(0,document.body.scrollHeight);

@@ -1,0 +1,252 @@
+html{
+    height:100%;
+    overflow:auto;
+  }
+  body{
+    height:100%;
+  }
+  .home{
+    padding:0; margin:0;
+  }
+  /*Nav Bar Design*/
+ @font-face { 
+  font-family: 'MontBlack'; 
+  src: url('Mont-Black.otf') format('truetype');
+  }
+  @font-face{
+    font-family:'MontLight';
+    src: url('Mont-Light.otf') format('truetype');
+  }
+.home ul {
+    list-style-type: none;
+    margin: 0;
+    top:0;
+    width: 100%;
+    height:70px;
+    padding:0;
+    overflow: hidden;
+    position: fixed;
+    background-color:#17252a;
+}
+
+.home li {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    text-decoration: none;
+    -webkit-transition: all ease; /* Safari */
+    transition: all 0.35s ease;
+    height:100%;
+    cursor:pointer;
+}
+
+.home li p {
+    display: inline-block;
+    color: white;
+    font-family: Arial Black, Helvetica, Verdana, sans-serif;
+    font-weight:900;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    margin-top:5px;
+}
+.home li:hover {
+    background-color:#858796;
+}
+#profile{
+    float:left;
+    width:20%;
+    height:calc(100vh - 140px);
+    padding-bottom:70px;
+    margin-top:70px;
+    position:fixed;
+    background-color:#1c1c1c;
+    overflow: auto;
+}
+#profileImage{
+  border-radius:90px;
+  margin-top:5%;
+  height:100px;
+  width:100px;
+  margin-left:5%;
+  margin-bottom:5px;
+  background-size: 91px;
+  background-image:url('https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png');
+   text-decoration: none;
+    -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -o-transition: all 0.1s ease-in-out;
+        -ms-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+}
+#profileImage:hover{
+  filter:blur(2px);
+  cursor:pointer;
+  margin-left:8%;
+}
+#chatConvo{
+  color:white;
+  font-family: MontLight;
+  font-size:20px;
+  padding:5px;
+}
+#chatConvo p{
+  margin:3px;
+  margin-left:14px;
+}
+#profileContent{
+  color:white;
+  font-family: MontLight;
+  font-size:17px;
+  padding:3px;
+  border-radius: 3px;
+    text-decoration: none;
+    -webkit-transition: all 0.15s ease-in-out;
+        -moz-transition: all 0.15s ease-in-out;
+        -o-transition: all 0.15s ease-in-out;
+        -ms-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out;
+}
+#profileContent p{
+  margin-left:10px;
+}
+#profileContent:hover{
+  background-color:#333333;
+  color:white;
+  cursor:pointer;
+}
+#mainContent{
+  float:right;
+  width:80%;
+  margin-top:70px;
+  height:100vh;
+  margin-bottom: 10px;
+}
+#contentPost{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+}
+#postHeader{
+  font-family:montBlack;
+  font-size:30px;
+}
+#postDetails{
+  font-size:23px;
+}
+#postContent{
+  font-family: montLight;
+  font-size:20px;
+}
+#postOptions{
+  font-family:montLight;
+  font-size:21px;
+  padding-bottom:7px;
+}
+#postOptions p{
+  padding:8px;
+  display:inline;
+  border-radius:3px;
+}
+#postOptions p:hover{
+  background-color:#333333;
+  color:white;
+  cursor:pointer;
+}
+#chatBar{
+  bottom:0;
+  width:80%;
+  height: 70px;
+  background-color:grey;
+  position:fixed;
+  margin-left:20%;
+}
+.button{
+    height:50px; width:90px; border: 2px solid white;
+    margin-top:10px;
+    margin-right:10px;
+    float:right;
+    font-size:14px;
+    font-family:montLight;
+    background-color:black;
+    color:white;
+    text-align:center;
+    text-decoration: none;
+    -webkit-transition: all 0.35s ease-in-out;
+        -moz-transition: all 0.35s ease-in-out;
+        -o-transition: all 0.35s ease-in-out;
+        -ms-transition: all 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+  }
+  .button:hover{
+    background-color:#666666;
+    cursor: pointer;
+  }
+  #private_message{
+    background-color:white;
+    width:82%;
+    float:left;
+    font-family:montLight;
+    margin-top:8px;
+    margin-left:1%;
+    border-radius:3px;
+    height:50px;
+    font-size:20px;
+    resize:none;
+  }
+#chatContent{
+  overflow: auto;
+  width:80%;
+  margin-left:20%;
+  margin-top:70px;
+  float:right;
+  vertical-align: bottom;
+  display:flex;
+  flex-direction: column;
+}
+#messageContentReceived{
+  background-color:#e2e2e2;
+  color:#595a5b;
+  margin:5px;
+  border-radius:3px;
+  float:left;
+  width:60%;
+}
+#messageContentSent{
+  background-color:#c1c1c1;
+  color:#595a5b;
+  margin:5px;
+  border-radius:3px;
+  margin-left:39%;
+  width:60%;
+}
+#messageDetails{
+  font-family:montBlack;
+  font-size:22px;
+  padding-left:2%;
+  padding-top:8px;
+}
+#messageDetails p{
+  padding:0;
+  margin:0;
+}
+#chat{
+  font-family:montLight;
+  font-size:18px;
+  padding-left:10%;
+  padding-right:3%;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #50e539;
+  border-radius: 50%;
+  display: inline-block;
+}
+@media screen and (max-width: 1100px){
+  #barContent{
+    width:100% !important;
+  }
+}
+ 

@@ -205,9 +205,6 @@ def logout():
 @is_logged_in
 def dashboard(username1=None):
 
-	# Create Cursor
-	#############################################################3
-	#basic stuff that we can use if things dont work
 	if request.method == 'POST':
 		username = request.form['username1']
 		message = request.form['message']
@@ -218,7 +215,6 @@ def dashboard(username1=None):
 
 		#Close connection
 		cur.close()
-	#############################################################
 
 	cur = mysql.connection.cursor()
 	username = session['username']
@@ -245,6 +241,16 @@ def dashboard(username1=None):
 		convo = username1
 	return render_template('dashboard.html', usernames=usernames, username=username, convo=convo, messages=messages)
 	
+@app.route('/profile', methods=['GET', 'POST'])
+@is_logged_in
+def profile():
+	username = session['username']
+	cur = mysql.connection.cursor()
+	cur.execute("SELECT email, name, register_date from users where username = %s", [username])
+	content = cur.fetchall()
+	print(content)
+	return render_template('userprofile.html', content=content, username=username)
+
 # Article Form Class
 class ArticleForm(Form):
 	title = StringField('Title', [validators.Length(min = 1, max = 200)])
@@ -352,8 +358,18 @@ def receive_username(username):
 def private_message(payload):
 	recipient_session_id = users[payload['username']]
 	message = payload['message']
+	print(payload)
+	
+	username = payload['username']
+	cur = mysql.connection.cursor()
+	cur.execute("INSERT INTO messages(username1, username2, message) VALUES(%s, %s, %s)", (payload['sentname'], username, message))
 
-	emit('new_private_message', message, room=recipient_session_id)
+	mysql.connection.commit()
+
+		#Close connection
+	cur.close()
+
+	emit('new_private_message', message, room=recipient_session_id, broadcast=True)
 
 if __name__ == '__main__':
 	#app.secret_key = os.environ.get('SECRET_KEY')
