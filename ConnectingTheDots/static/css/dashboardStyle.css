@@ -95,7 +95,7 @@ html{
   margin:3px;
   margin-left:14px;
 }
-#profileContent{
+.profileContent{
   color:white;
   font-family: MontLight;
   font-size:17px;
@@ -108,10 +108,10 @@ html{
         -ms-transition: all 0.15s ease-in-out;
         transition: all 0.15s ease-in-out;
 }
-#profileContent p{
+.profileContent p{
   margin-left:10px;
 }
-#profileContent:hover{
+.profileContent:hover{
   background-color:#333333;
   color:white;
   cursor:pointer;

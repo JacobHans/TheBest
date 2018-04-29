@@ -41,8 +41,8 @@
 		</div>
 		<hr>
 		{% for usr in usernames %}
-			<div id="profileContent" onclick="changeChat(this)">
-				<p>{{ usr }}</p>
+			<div class="profileContent" onclick="changeChat(this)">
+				<p id="{{ usr }}">{{ usr }}</p>
 			</div>
 		{% endfor %}
 	</div>
@@ -76,18 +76,16 @@
 	</div>
 	<div id="chatBar">
 		<!--changed some things here that will load -->
-		<form action="" method="POST">
 			<textarea type="textarea" id="private_message" style=" background-color:white;
     width:82%;
     float:left;
     font-family:montLight;
     margin-top:8px;
-    margin-left:1%;border-radius:3px;height:50px;font-size:20px; resize:none;" name="message" placeholder="type message" required></textarea>
+    margin-left:1%;border-radius:3px;height:50px;font-size:20px; resize:none;" name="message" placeholder="type message"></textarea>
 			<button class="button" id="send_private_message" type="submit">
 				<p>send</p>
 			</button>
 			<input type="text" id="send_to_username" name="username1" style="visibility: hidden">
-		</form>
 	</div>
 	</div>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -97,19 +95,5 @@
               integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
               crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-	<script>
-		function loadScroll(){
-			window.scrollTo(0,document.body.scrollHeight);
-			document.getElementById('send_to_username').value = document.getElementById('curChat').innerHTML;
-			console.log(document.getElementById('curChat').innerHTML);
-		}
-
-		function changeChat(value){
-			var text = value.getElementsByTagName('p')[0].innerHTML;
-			document.getElementById('curChat').innerHTML = text;
-			document.getElementById('send_to_username').value = text;
-			window.open('/dashboard/'+document.getElementById('curChat').innerHTML, "_self");
-		}
-	</script>
 </body>
 </html>

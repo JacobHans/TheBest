@@ -200,21 +200,21 @@ def logout():
 	return redirect(url_for('login'))
 
 # Dashboard
-@app.route('/dashboard', methods=['GET','POST'])
-@app.route('/dashboard/<string:username1>', methods=['GET', 'POST'])
+@app.route('/dashboard')
+@app.route('/dashboard/<string:username1>')
 @is_logged_in
 def dashboard(username1=None):
 
-	if request.method == 'POST':
-		username = request.form['username1']
-		message = request.form['message']
-		cur = mysql.connection.cursor()
-		cur.execute("INSERT INTO messages(username1, username2, message) VALUES(%s, %s, %s)", (session['username'], username, message))
+	# if request.method == 'POST':
+	# 	username = request.form['username1']
+	# 	message = request.form['message']
+	# 	cur = mysql.connection.cursor()
+	# 	cur.execute("INSERT INTO messages(username1, username2, message) VALUES(%s, %s, %s)", (session['username'], username, message))
 
-		mysql.connection.commit()
+	# 	mysql.connection.commit()
 
-		#Close connection
-		cur.close()
+	# 	#Close connection
+	# 	cur.close()
 
 	cur = mysql.connection.cursor()
 	username = session['username']
@@ -344,21 +344,21 @@ def delete_article(id):
 
 	return redirect(url_for('dashboard'))
 
-#test user/name
-@app.route('/user/<name>')
-def user(name):
-	return'<h1>Hello, %s!</h1>' % name
-
-@socketio.on('username', namespace='/private')
-def receive_username(username):
-    users[username] = request.sid
+# @socketio.on('username', namespace='/private')
+# def receive_username(username):
+#     users[username] = request.sid
     #users.append({username : request.sid})
+@socketio.on('connected')
+def receove_connect(username):
+   print(username)
+   users[username] = request.sid
+   #users.append({username : request.sid})
+   print(users)
+   print('Username added!')
 
 @socketio.on('private_message', namespace='/private')
 def private_message(payload):
-	recipient_session_id = users[payload['username']]
 	message = payload['message']
-	print(payload)
 	
 	username = payload['username']
 	cur = mysql.connection.cursor()
@@ -368,8 +368,9 @@ def private_message(payload):
 
 		#Close connection
 	cur.close()
+	recipient_session_id = users[payload['username']]
 
-	emit('new_private_message', message, room=recipient_session_id, broadcast=True)
+	emit('new_private_message', username, room=recipient_session_id, broadcast=True)
 
 if __name__ == '__main__':
 	#app.secret_key = os.environ.get('SECRET_KEY')
