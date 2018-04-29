@@ -143,7 +143,6 @@ h2{
 /* Style page content */
 .main {
     background-color: #4f545c;
-    margin-left: 160px; /* Same as the width of the sidebar */
     padding: 0px 10px;
 }
 
@@ -151,3 +150,9 @@ h2{
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+@media screen and (max-width: 1100px){
+  #barContent{
+    width:100% !important;
+  }
+}

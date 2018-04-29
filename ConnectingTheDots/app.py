@@ -86,12 +86,13 @@ def articles():
 	result = cur.execute("SELECT * FROM articles")
 
 	articles = cur.fetchall()
+	username=session['username']
 
 	if result > 0:
-		return render_template('articles.html', articles=articles)
+		return render_template('articles.html', articles=articles, username=username)
 	else:
 		msg = 'No Articles Found'
-		return render_template('articles.html', msg=msg)
+		return render_template('articles.html', msg=msg, username=username)
 
 	#Close Connection
 	cur.close()
@@ -106,8 +107,9 @@ def article(id):
 	result = cur.execute("SELECT * FROM articles WHERE id = %s", [id])
 
 	article = cur.fetchone()
+	username=session['username']
 
-	return render_template('article.html', article=article)
+	return render_template('article.html', article=article, username=username)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -175,7 +177,7 @@ def login():
 			# Close connection
 			cur.close()
 		else:
-			error = 'Username not found'
+			error = 'Invalid login'
 			return render_template('login.html', error=error)
 	return render_template('login.html')
 
@@ -195,6 +197,7 @@ def is_logged_in(f):
 @app.route('/logout')
 @is_logged_in
 def logout():
+	del users[session['username']]
 	session.clear()
 	flash('You are now logged out', 'success')
 	return redirect(url_for('login'))
@@ -215,7 +218,6 @@ def dashboard(username1=None):
 
 	# 	#Close connection
 	# 	cur.close()
-
 	cur = mysql.connection.cursor()
 	username = session['username']
 	result = cur.execute("SELECT username from users where name != %s", [username])
@@ -239,7 +241,7 @@ def dashboard(username1=None):
 		messages += cur.fetchall()
 		messages = sorted(messages, key=lambda i:i['id'])
 		convo = username1
-	return render_template('dashboard.html', usernames=usernames, username=username, convo=convo, messages=messages)
+	return render_template('dashboard.html', usernames=usernames, username=username, convo=convo, messages=messages, users=users)
 	
 @app.route('/profile', methods=['GET', 'POST'])
 @is_logged_in
@@ -260,10 +262,11 @@ class ArticleForm(Form):
 @app.route('/add_article', methods=['GET', 'POST'])
 @is_logged_in
 def add_article():
-	form = ArticleForm(request.form)
-	if request.method == 'POST' and form.validate():
-		title = form.title.data
-		body = form.body.data
+	
+	username = session['username']
+	if request.method == 'POST':
+		title = request.form['title']
+		body = request.form['body']
 
 		# Create Cursor
 		cur = mysql.connection.cursor()
@@ -279,9 +282,9 @@ def add_article():
 
 		flash('Article Created', 'success')
 
-		return redirect(url_for('dashboard'))
+		return redirect(url_for('articles'))
 
-	return render_template('add_article.html', form=form)
+	return render_template('add_article.html', username=username)
 
 #Edit Article
 @app.route('/edit_article/<string:id>', methods=['GET', 'POST'])
@@ -350,11 +353,8 @@ def delete_article(id):
     #users.append({username : request.sid})
 @socketio.on('connected')
 def receove_connect(username):
-   print(username)
    users[username] = request.sid
    #users.append({username : request.sid})
-   print(users)
-   print('Username added!')
 
 @socketio.on('private_message', namespace='/private')
 def private_message(payload):

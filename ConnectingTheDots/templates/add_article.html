@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Add Articles</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/articleStyle.css') }}">
+<body class="home">
+	<ul id="test">
+			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
+						<li>
+				  			<p id="sentUsername">{{ username }}</p>
+				  			<span class="dot"></span>
+				  		</li>
+				  		<a href="/logout">
+							<li style="float:right">
+				  				<p>Log out</p>
+				  			</li>
+				  		</a>
+				  		<a href="/dashboard">
+							<li style="float:right">
+				  				<p>Chats</p>
+				  			</li>
+				  		</a>
+				  		<a href="/profile">
+				  		<li style="float:right">
+				  			<p>Profile</p>
+				  		</li>
+				  		</a>
+				  		<a href="/articles">
+                            <li style="float:right">
+                                <p>Forum</p>
+                            </li>
+                        </a>
+			</div>
+	</ul>
+
+	<div class="addArticle">
+		<a href="/articles" id="a-tag"><div class="add_article_button">back</div></a>
+		<h1>Add Article</h1>
+		<form method="POST" action="">
+			<div class="form-group">
+				<input type="text" id="send_to_username" name="title" placeholder="enter title">
+			</div>
+			<div class="form-group">
+				<textarea type="text" class="articleBody" id="send_to_username" name="body" placeholder="write your article"></textarea>
+			</div>
+			<p><input class="add_article_button" type="submit" value="Submit"></p>
+		</form>
+	</div>
+</body>
+    </head>
+</html>

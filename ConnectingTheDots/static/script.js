@@ -38,6 +38,7 @@ $(document).ready(function() {
     });
 
     private_socket.on('new_private_message', function(username) {
+       alert(username);
        location.reload();
     });
 

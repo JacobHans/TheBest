@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>{{article.title}}</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/articleStyle.css') }}">
+<body class="home">
+			<ul id="test">
+			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
+						<li>
+				  			<p id="sentUsername">{{ username }}</p>
+				  			<span class="dot"></span>
+				  		</li>
+				  		<a href="/logout">
+							<li style="float:right">
+				  				<p>Log out</p>
+				  			</li>
+				  		</a>
+				  		<a href="/dashboard">
+							<li style="float:right">
+				  				<p>Chats</p>
+				  			</li>
+				  		</a>
+				  		<a href="/profile">
+				  		<li style="float:right">
+				  			<p>Profile</p>
+				  		</li>
+				  		</a>
+				  		<a href="/articles">
+                            <li style="float:right">
+                                <p>Forum</p>
+                            </li>
+                        </a>
+			</div>
+	</ul>
+	<div class="displayArticle">
+		<a href="/articles" id="a-tag"><div class="add_article_button">back</div></a>
+		<h1 class="articleTitle">{{article.title}}</h1>
+		<p>Written by {{article.author}} on {{article.create_date}}</p>
+		<hr>
+		<div>
+			<p>
+			{{ article.body | safe }}
+		</p>
+		</div>
+		<p></p>
+	</div>
+	</body>
+</head>
+</html>

@@ -28,7 +28,12 @@
 				  		<li style="float:right">
 				  			<p>Profile</p>
 				  		</li>
-				  	</a>
+				  		</a>
+				  		<a href="/articles">
+                            <li style="float:right">
+                                <p>Forum</p>
+                            </li>
+                        </a>
 			</div>
 	</div>
 	</ul>
@@ -37,12 +42,22 @@
 		</div>
 		<div id="chatConvo">
 			<p>Chatting with:</p>
-			<p id="curChat">{{ convo }}</p>
+			<p id="curChat" style="display:inline-block">{{ convo }}</p>
+			{%for usr2 in users%}
+				{% if convo == usr2 %}
+					<span class="dot"></span>
+				{%endif%}
+			{%endfor%}
 		</div>
 		<hr>
-		{% for usr in usernames %}
+		{% for usr1 in usernames %}
 			<div class="profileContent" onclick="changeChat(this)">
-				<p id="{{ usr }}">{{ usr }}</p>
+				<p id="{{ usr1 }}" style="display: inline-block;">{{ usr1 }}</p>
+				{%for usr2 in users%}
+				{%if usr1 == usr2%}
+					<span class="dot"></span>
+				{%endif%}
+				{%endfor%}
 			</div>
 		{% endfor %}
 	</div>
