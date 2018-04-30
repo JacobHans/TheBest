@@ -1,5 +1,0 @@
-{
-  "tests/test_app.py::test_home": true, 
-  "tests/test_app.py::test_receive_username": true, 
-  "tests/test_app.py::test_register": true
-}

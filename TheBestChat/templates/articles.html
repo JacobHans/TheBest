@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Articles</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/articleStyle.css') }}">
+<body class="home">
+		<ul id="test">
+			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
+						<li>
+				  			<p id="sentUsername">{{username}}</p>
+				  			<span class="dot"></span>
+				  		</li>
+				  		<a href="/logout">
+							<li style="float:right">
+				  				<p>Log out</p>
+				  			</li>
+				  		</a>
+				  		<a href="/dashboard">
+							<li style="float:right">
+				  				<p>Chats</p>
+				  			</li>
+				  		</a>
+				  		<a href="/profile">
+				  		<li style="float:right">
+				  			<p>Profile</p>
+				  		</li>
+				  		</a>
+				  		<a href="/articles">
+                            <li style="float:right">
+                                <p>Forum</p>
+                            </li>
+                        </a>
+			</div>
+	</ul>
+	<div class="articles">
+		<h1 style="color:white; font-family:MontBlack; margin-left:14%";>Articles</h1>
+		<a href="/add_article" id="a-tag"><div class="add_article_button">add article</div></a>
+		<div class="list-group">
+			<p style="font-family:MontLight; color:white; font-size:20px">{{msg}}</p>
+			{% for article in articles %}
+				{%if article.author == username%}
+				<a href= "article/{{article.id}}">
+					<div class="list-group-item" style="float:left; width:80%; display:inline-block"><p>{{article.title}}         By: {{article.author}}</p></div>
+				</a>
+				<form action="{{url_for('delete_article', id=article.id)}}" method="POST">
+					<input type="submit" value="Delete" class="delete_article_button">
+				</form>
+				{%else%}
+				<a href= "article/{{article.id}}">
+					<div class="list-group-item"><p>{{article.title}}         By: {{article.author}}</p></div>
+				</a>
+				{%endif%}
+			{% endfor %}
+		</div>
+		<p></p>
+	</div>
+</body>
+    </head>
+</html>
