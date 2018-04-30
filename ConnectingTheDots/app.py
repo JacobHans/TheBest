@@ -17,6 +17,7 @@ app = Flask(__name__)
 app.secret_key = "TheBestCSCI3308"
 manager = Manager(app)
 users = {}
+newMessages = []
 socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
 
@@ -207,17 +208,8 @@ def logout():
 @app.route('/dashboard/<string:username1>')
 @is_logged_in
 def dashboard(username1=None):
-
-	# if request.method == 'POST':
-	# 	username = request.form['username1']
-	# 	message = request.form['message']
-	# 	cur = mysql.connection.cursor()
-	# 	cur.execute("INSERT INTO messages(username1, username2, message) VALUES(%s, %s, %s)", (session['username'], username, message))
-
-	# 	mysql.connection.commit()
-
-	# 	#Close connection
-	# 	cur.close()
+	if username1 in newMessages:
+		newMessages.remove(username1)
 	cur = mysql.connection.cursor()
 	username = session['username']
 	result = cur.execute("SELECT username from users where name != %s", [username])
@@ -241,7 +233,7 @@ def dashboard(username1=None):
 		messages += cur.fetchall()
 		messages = sorted(messages, key=lambda i:i['id'])
 		convo = username1
-	return render_template('dashboard.html', usernames=usernames, username=username, convo=convo, messages=messages, users=users)
+	return render_template('dashboard.html', usernames=usernames, username=username, convo=convo, messages=messages, users=users, newMessages=newMessages)
 	
 @app.route('/profile', methods=['GET', 'POST'])
 @is_logged_in
@@ -358,6 +350,7 @@ def receove_connect(username):
 
 @socketio.on('private_message', namespace='/private')
 def private_message(payload):
+	global newMessages
 	message = payload['message']
 	
 	username = payload['username']
@@ -369,8 +362,20 @@ def private_message(payload):
 		#Close connection
 	cur.close()
 	recipient_session_id = users[payload['username']]
+	sent_user = payload['sentname']
 
-	emit('new_private_message', username, room=recipient_session_id, broadcast=True)
+	newMessages.append(sent_user)
+
+	newMessages = Remove(newMessages)
+
+	emit('new_private_message', room=recipient_session_id, broadcast=True)
+
+def Remove(duplicate):
+	final_list = []
+	for num in duplicate:
+		if num not in final_list:
+			final_list.append(num)
+	return final_list
 
 if __name__ == '__main__':
 	#app.secret_key = os.environ.get('SECRET_KEY')

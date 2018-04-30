@@ -10,10 +10,12 @@
 <body class="home" onload="loadScroll()">
 	<ul id="test">
 			<div id="barContent" style="width:1100px; height:55px; margin-right:auto; margin-left:auto">
+						<a href="/profile">
 						<li>
 				  			<p id="sentUsername">{{ username }}</p>
 				  			<span class="dot"></span>
 				  		</li>
+				  		</a>
 				  		<a href="/logout">
 							<li style="float:right">
 				  				<p>Log out</p>
@@ -56,6 +58,11 @@
 				{%for usr2 in users%}
 				{%if usr1 == usr2%}
 					<span class="dot"></span>
+				{%endif%}
+				{%endfor%}
+				{%for usr in newMessages%}
+				{%if usr == usr1 and convo != usr1%}
+				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJjSURBVGhD7dnL601RGMbxk2TgUhQxMJBMKGWCkSEyNGBgrgwkfwRlZqZkRAZKmFAupfgNlMvI/TKRck8K5VL4PoNfrfRw1lr7XWeT/dRntnvXfjvnrL3Ou0dDhgwZ8l9nDrbgAM7hPl7jHd7iIS7gILZiPv6qrMdRfMCPAp9xGpvQa1bjItxNlrqODZhoZmI/vsHdVK3vOILZaJ5FuAp3I1FuYzmaZSkewC0e7QXWIDz6JB7DLdqKdrwVCIt+E1Nwi7Wmb8A8hEQ/bLfIpBxD52iLrdmdLkM/2F8dh7t+nM7Pmktwhcc5C5dDcNePcw8zUJV1cEVzRDci21EVHTtcwRwtGrmC4ugA+BGuYI4WjejJvwxF0SnWFcvVohHZhaLoKO4K5WrVyAkURTfiCqWuQbuasw8ue+Cun+bWSekcVhT9CXKFUnrGRMetk/qCoryCK5TqoxHRRpSd93BFUn01shDZeQNXJNVXI0WHyCdwRVJ9NKJzX1HOwxVKncTh39gNlx1w109z66R0rC+KRjauUK5Wz5EzKIrmTq5QrlaN7EVRNDzTnu2K5WjVyEoU5xRcsRwtGrmFqmyEK5ijRSM7UZ0bcEXHiW7kKWahOhpj6n+AK/4n0Y1o2+4cjTFd8UnRBD8kmsXehVuktedYjLBo4qfJn1uslU/QK4vw6Gz1Em7RaHrXshnNok/mEdziUTTAXovmmQuNMd1NdKXD6hJMNBpjRm0CzxCyxdZGY8xt0PCs5nlzE3pid3rYRUfDM82dNLK5A73sTG/6KzTU0FFcp9hV+GeiQcEChL3jGDJkSGlGo5+FYtxxsuef3AAAAABJRU5ErkJggg==" class="newMessage">
 				{%endif%}
 				{%endfor%}
 			</div>

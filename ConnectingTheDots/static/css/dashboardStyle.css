@@ -97,6 +97,7 @@ html{
   margin-left:14px;
 }
 .profileContent{
+  overflow: hidden;
   color:white;
   font-family: MontLight;
   font-size:17px;
@@ -245,6 +246,14 @@ html{
   background-color: #50e539;
   border-radius: 50%;
   display: inline-block;
+}
+.newMessage{
+  height:20px;
+  width:20px;
+  background-color:white;
+  padding:1px;
+  border-radius:50px;
+  display:inline-block;
 }
 @media screen and (max-width: 1100px){
   #barContent{
