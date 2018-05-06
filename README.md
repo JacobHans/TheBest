@@ -1,6 +1,7 @@
 # TheBest
 ## CSCI 3308 Project
 #### Deployed at: http://jacobhans.pythonanywhere.com
+This deployment does not support sockets, which means the messanger will not update without refreshing the page.
 
 Social Media based project that includes forum/message boards and personal messaging between users. Users are able to view and message other users who are also signed up with the webapp in real time. Through the forum page, users may post public questions and discussions where others will be able to see, and if needed, another user can message the owner of the discussion with further questions or inquiries.
 
